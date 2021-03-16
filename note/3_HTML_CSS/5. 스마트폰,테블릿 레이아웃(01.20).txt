@@ -1,0 +1,19 @@
+01/20
+
+*스마트폰 레이아웃
+ o 작업순서
+  (1) viewport: 웹브라우저의 HTML문서에 특정한 정보를 나타내기 위한 태그로 meta태그가 있다
+   - 스마트폰 단말기의 화면이 작던 크던 항상 꽉 차게 보여지기 때문에 디바이스의 특정정보를
+     나타내기 위해 사용
+   - 뷰포트의 속성들: width(화면의너비), height(높이), initial-scale(초기 확대 비율), user-scalabel(
+      확대 및 축소 가능 여부), minimum-scale(최소비율), maximum-scale(최대비율)
+  (2) header 제작
+  (3) 네비 제작
+  (4) 본문제작
+  (5) Fotter의 레이아웃
+  (6) 기본 스마트폰 레이아웃
+
+#스마트폰을 작업할 때는 넓이 등의 계산시 %를 사용
+#말줄임태그: white-space:nowrap; + overflow:hidden; + text-overflow:ellipsis;
+#테블릿의 경우도 동일한 방식으로 작업하나 margin 등의 요소를 적용 시 약간의 차이를 두고 있다
+

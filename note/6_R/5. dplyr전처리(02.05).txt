@@ -1,0 +1,42 @@
+02/05
+
+*dplyr을 이용한 전처리
+
+#데이터 준비 , 패키지 준비
+ o mpg <- as.data.frame(ggplot2::mpg) #데이터 불러오기
+ o library(dplyr) # dplyr 로드, 필요시 install
+
+#데이터 파악
+ o head(mpg) 데이터 앞부분, tail(mpg) 데이터 뒷부분, View(mpg) 데이터 뷰어창 확인
+ o dim(mpg) 차원 확인, str(mpg) 속성, 구조 확인, summary(mpg) 요약 통계량- 최소값, 1,3 사분위수, 중위수, 최대값
+
+#변수명 수정
+ o mpg <- rename(mpg, company = manufacturer)
+
+#파생변수
+ o mpg$total <- (mpg$cty + mpg$hwy) /2 , mpg$test <- ifelse(mpg$total >= 20, "pass", "fail")
+
+#빈도확인
+ o table(mpg$test) # 빈도표 출력, qplot(mpg$test) # 막대 그래프 생성
+
+* 데이터 전처리, dplyr 패키지 - dplyr 패키지는 %>%(ctrl+shift+m) 이용해서 함수들을 나열
+ o filter() : 조건에 맞는 데이터 추출
+  - ex) exam %>% filter(class %in% c(1,2))
+ o select() : 열(변수) 추출
+  - ex) exam %>% select(class, english)
+ o arrange() : 정렬
+  - ex) exam %>% arrange(math)       # 오름차순 정렬
+  - ex) exam %>% arrange(desc(math)) #내림차순 정렬
+ o mutate() : 변수 추가(새로운 필드)
+  - ex) exam %>% mutate(total = math + english +science)
+ o summarise( ): 통계치 산출
+ - ex) exam %>% 
+  summarise(mean_math = mean(math), mean_eng  = mean(english),
+            		sd_math = sd(math), sd_eng = sd(english))
+ o group_by() : 집단별로 나누기
+ - ex) exam %>% 
+  	group_by(class) %>% 
+  	summarise(mean_math = mean(math),
+           	 mean_eng  = mean(english),
+           	 mean_sci  = mean(science))
+

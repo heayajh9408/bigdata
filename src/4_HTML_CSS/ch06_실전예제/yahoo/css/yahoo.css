@@ -1,0 +1,212 @@
+﻿@font-face {
+    font-family: 'Amarante';
+    src: url('../font/Amarante-Regular.ttf')
+}
+*{margin:0; padding:0;
+  font-family: 'Times New Roman','Amarante', Times, serif;
+}
+#header_nav {
+    width: 100%;
+    height: 30px;
+    background-color: #2d1152;
+    overflow: hidden;
+}
+#header_nav .gnb ul li{
+    float:left;
+    list-style:none;
+    margin-right:30px;
+    margin-left:5px;
+    line-height:30px;
+}
+#header_nav .gnb ul li a{
+    text-decoration:none;
+    color:white;
+}
+#header_nav .survival{
+    float:right;
+    font-size:0.8em;
+    margin-right:10px;
+    line-height:30px;
+}
+#header_nav .survival a{
+    text-decoration:none;
+    color:white;
+}
+#header_info{
+    width:1000px; height:60px;
+    overflow:hidden;
+    margin: 10px auto;
+}
+#header_info .logo{
+    float:left;
+}
+#header_info .search input[type=text]{
+    float:left;
+    width:400px; margin-top:10px;
+    margin-left:10px;
+    padding-bottom:5px;
+    float:left; height:30px;
+    border:1px solid #0a51f8;
+}
+#header_info .search input[type=submit] {
+    float:left;
+    background:url('../img/search_btn.png');
+    width:124px;
+    height:37px;
+    background-size:150px;
+    border:0; outline:0;
+    margin-top:10px;
+    margin-left:3px;
+    color:white;
+}
+#header_info .service ul{
+    overflow:hidden;
+    margin-right:15px;
+}
+#header_info .service ul li{
+    float:right;
+    list-style:none;
+    margin-left:10px;
+    margin-top:20px;
+    font-size:0.9em;
+}
+#header_info .service ul li a{
+    text-decoration:none;
+}
+#content{
+    width:1000px; 
+    margin: 10px auto;
+    overflow:hidden;
+}
+#content #main_menu ul{
+    float:left;
+}
+#content #main_menu ul li{
+    width:155px;
+    text-align:center;
+    margin-top:30px;
+    list-style:none;
+    font-size:0.9em;
+}
+#content #main_menu ul li a{
+    text-decoration:none;
+    color:black;
+}
+#content #main{
+    margin:20px auto;
+    float:left;
+}
+#content #main .mainbig{
+    width:600px; height:300px;
+    border:1px solid #cccccc;
+    box-sizing:border-box;
+
+}
+#content #main .mainslide{
+    width:600px; height:150px;
+    border:1px solid #cccccc;
+    box-sizing:border-box;
+    margin-top:3px;
+}
+#content #main .mainbanner{
+    width:600px; height:50px;
+    border:1px solid #cccccc;
+    box-sizing:border-box;
+    background-color:#500095;
+    margin-top:3px;
+}
+#content #main .mainbanner ul{
+    overflow:hidden;
+}
+#content #main .mainbanner ul li{
+    float:left;
+    list-style:none;
+    line-height:50px;
+    margin-left:20px;
+    margin-right:20px;
+}
+#content #main .mainbanner ul li a{
+    text-decoration:none;
+    color:white;
+}
+#content #main .topic1{
+    width:600px; height:100px;
+    border:1px solid #cccccc;
+    box-sizing:border-box;
+    margin-top:3px;
+}
+#content #main .topic2{
+    width:600px; height:100px;
+    border:1px solid #cccccc;
+    box-sizing:border-box;
+    margin-top:3px;
+}
+#content #main .topic3{
+    width:600px; height:100px;
+    border:1px solid #cccccc;
+    box-sizing:border-box;
+    margin-top:3px;
+}
+#content #main .topic4{
+    width:600px; height:100px;
+    border:1px solid #cccccc;
+    box-sizing:border-box;
+    margin-top:3px;
+}
+#content #main_banner{
+    float:left;
+    margin-top:20px;
+    margin-left:3px;
+}
+#content #main_banner .hitsearch{
+    width:230px; height:100px;
+    border:1px solid #cccccc;
+    box-sizing:border-box;
+}
+#content #main_banner .ad1{
+    width:230px; height:100px;
+    border:1px solid #cccccc;
+    box-sizing:border-box;
+    margin-top:3px;
+}
+#content #main_banner .ad2{
+    width:230px; height:100px;
+    border:1px solid #cccccc;
+    box-sizing:border-box;
+    margin-top:3px;
+}
+#content #main_banner .ad3{
+    width:230px; height:100px;
+    border:1px solid #cccccc;
+    box-sizing:border-box;
+    margin-top:3px;
+}
+#content #main_banner .ad4{
+    width:230px; height:100px;
+    border:1px solid #cccccc;
+    box-sizing:border-box;
+    margin-top:3px;
+}
+#footer {
+    width: 1000px;
+    height: 100px;
+    border: 1px solid #cccccc;
+    box-sizing: border-box;
+    margin:0 auto;
+}
+#footer ul{
+    overflow:hidden;
+
+}
+#footer ul li{
+    float:left;
+    list-style:none;
+}
+#footer ul li:first-child{
+    margin-top:30px;
+    margin-left:230px;
+}
+#footer ul li:nth-child(2){
+    margin-top:25px;
+    margin-left:10px;
+}

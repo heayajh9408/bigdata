@@ -1,0 +1,31 @@
+03/10
+
+*데이터시각화
+
+* matplotlib
+ o 파이썬에서 가장 많이 사용되는 시각화 라이브러리, 판다스에도 내부적으로 matplotlib 사용
+ o 패키지 임포트 및 기본설정
+  - import matplotlib, import matplotlib.pyplot
+  - %matplotlib inline: 주피터노트북이 실행되는 브라우저에서 시각화를 실행 (예전 버전이라면 필수)
+  - %config InlineBackend.figure_format='retina' : 그래프의 해상도를 높임 'png'(기본)  'jpge','svg','pdf'
+
+* 그래프 그리기 단계
+ 1) 데이터준비
+  o 데이터 준비 및 그래프 객체  생성
+ 2) 그래프 생성
+  o 그래프 영역 나누기
+   - subplot() 함수로 서브플롯 추가 후 영역별 그리기 가능, 행렬 그래프
+  o 그래프 그리기
+   - pyplot.plot(kind='?'), scatter() 등
+  o pandas.DataFrame.plot()
+   - plot(x=None, y=None, kind='?', figsize=None, title=None, grid=None, xlim, ylim,...)
+   - kind: line, scatter, bar, barh(수평바), hist, box, density=kde, area, pie
+  o 이 외 그래프 그리기 함수
+  - fill(), fill_between scatter(),  bar(), axvline(), axhline(), hist(), boxplot(), violineplot()...
+ 4) 그래프 커스터마이징
+  o linestype, linewidth, text(), annotate()
+  o 한글 입력 시 폰트 설정 필요
+   - 기본 폰트: plt.rc('font', family='Malgun Gothic') 
+   - 원하는 한글 폰트: import matplotlib.font_manager, 
+ 5) 그래프 출력 및 저장
+

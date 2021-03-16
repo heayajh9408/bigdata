@@ -1,0 +1,22 @@
+01/28
+
+*문서 객체 모델
+ - 넓은 의미로 HTML 페이지를 인식하는 방식이고 좁은 의미로 document객체와 관련된 객체의 지합
+ - 태그를 자바스크립트에서 이용할 수 있는 객체로 만든 것
+ - html페이지를 트리 모양의 문서 객체 모델로 나타낼 수 있고 각 요소는 노드이다
+
+*문서 객체 만들기
+ o Document 객체의 노드 생성
+  - createElement(tagName), createTextNode(text)
+ o 문서 객체 연결
+  - appendChild(node), innerHTM(속성에 문자열 할당)
+
+*문서 객체 가져오기
+ o getElementById(id), getElementsByClassName(“class명”), getElementsByName(name),
+   getElementsByTagName(‘태그명’), document.querySelector(선택자), document.querySelectorAll(선택자)
+
+*이벤트
+ - 키보드를 이용해 버튼을 입력하거나 마우스 클릭과 같이 다른 것에 영향을 미치는 것
+ - onload 속성에 함수 자료형을 할당
+ - 문서 객체에 이벤트를 연결하는 방법을 이벤트 모델이라고 한다
+ - 인라인 이벤트 모델, 기본 이벤트 모델, 고전적 이벤트 모델, 표준 이벤트 모델, 

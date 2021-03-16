@@ -1,0 +1,91 @@
+ -- DROP
+DROP TABLE STUDENT;
+DROP TABLE MAJOR;
+DROP SEQUENCE STUDENT_SEQ;
+-- CREATE
+CREATE TABLE MAJOR(
+    mNO NUMBER(2),
+    mNAME VARCHAR2(50),
+    PRIMARY KEY(mNO));
+CREATE SEQUENCE STUDENT_SEQ MAXVALUE 999 NOCACHE NOCYCLE;
+CREATE TABLE STUDENT(
+    sNO VARCHAR2(7),
+    sNAME VARCHAR2(50),
+    mNO NUMBER(2),
+    SCORE NUMBER(3) DEFAULT 0 CHECK(SCORE>=0 AND SCORE<=100),
+    sEXPEL NUMBER(1) DEFAULT 0 CHECK(sEXPEL=0 OR sEXPEL=1),
+    PRIMARY KEY(sNO),
+    FOREIGN KEY(mNO) REFERENCES MAJOR(mNO));
+-- 학과정보 입력
+INSERT INTO MAJOR VALUES (1, '빅데이터학');
+INSERT INTO MAJOR VALUES (2, '경영정보학');
+INSERT INTO MAJOR VALUES (3, '컴퓨터공학');
+INSERT INTO MAJOR VALUES (4, '소프트웨어');
+INSERT INTO MAJOR VALUES (5, '인공지능학');
+SELECT * FROM MAJOR;
+COMMIT;
+-- 콘솔 StudentMng
+-- 2021001식으로 만드는 쿼리
+SELECT TO_CHAR(SYSDATE, 'YYYY')||
+        TRIM(TO_CHAR(STUDENT_SEQ.NEXTVAL, '000')) 
+    FROM DUAL;
+
+SELECT TO_CHAR(SYSDATE, 'YYYY')||
+        LPAD(STUDENT_SEQ.NEXTVAL,3,'0') FROM DUAL;
+
+-- 1번 기능. 이름, 전공명, 점수를 입력받아 입력
+--    학번은 시퀀스를 이용하여 "현재년도||순차번호"로 입력한다
+
+INSERT INTO STUDENT (sNO, sNAME, mNO, SCORE) VALUES
+    (TO_CHAR(SYSDATE, 'YYYY')
+    ||TRIM(TO_CHAR(STUDENT_SEQ.NEXTVAL,'000')),
+    '정우성',(SELECT mNO FROM MAJOR WHERE mNAME='빅데이터학'), 90) ;
+INSERT INTO STUDENT (sNO, sNAME, mNO, SCORE) VALUES
+    (TO_CHAR(SYSDATE, 'YYYY')
+    ||TRIM(TO_CHAR(STUDENT_SEQ.NEXTVAL,'000')),
+    '박세영',(SELECT mNO FROM MAJOR WHERE mNAME='빅데이터학'), 80) ;
+INSERT INTO STUDENT (sNO, sNAME, mNO, SCORE) VALUES
+    (TO_CHAR(SYSDATE, 'YYYY')
+    ||TRIM(TO_CHAR(STUDENT_SEQ.NEXTVAL,'000')),
+    '배수지',(SELECT mNO FROM MAJOR WHERE mNAME='컴퓨터공학'), 20) ;
+INSERT INTO STUDENT VALUES
+    (TO_CHAR(SYSDATE, 'YYYY')
+    ||TRIM(TO_CHAR(STUDENT_SEQ.NEXTVAL,'000')),
+    '김제적',(SELECT mNO FROM MAJOR WHERE mNAME='컴퓨터공학'), 10, 1) ;
+
+--2번 기능. 원하는 학과이름을 입력받아
+--    학과별 조회후 점수가 높은 순으로 출력
+-- 1등    	정우성(2021001)     빅데이터학      	90
+SELECT ROWNUM RANK, sNAME||'('||sNO||')' sNAME, mNAME, SCORE
+    FROM (SELECT * FROM STUDENT S, MAJOR M 
+            WHERE S.mNO=m.mNO AND mNAME='컴퓨터공학'
+            ORDER BY SCORE DESC); -- (1)방법
+            
+SELECT ROWNUM RANK, sNo, sNAME, mNAME, SCORE
+    FROM (SELECT * FROM STUDENT S, MAJOR M 
+            WHERE S.mNO=m.mNO AND mNAME='컴퓨터공학'
+            ORDER BY SCORE DESC);-- (2)방법
+--3을 누르면  
+-- 제적당하지 않은 전체 학생을 조회 후 점수가 높은 순 출력
+--등수           이름         학과      	점수
+--──────────────────────────────
+--1등    	송혜교(2021005)     인공지능학     	100
+SELECT ROWNUM RANK, sNAME||'('||sNO||')' sNAME, mNAME, SCORE
+    FROM (SELECT * FROM STUDENT S, MAJOR M WHERE S.mNO=m.mNO AND sEXPEL=0
+            ORDER BY SCORE DESC);-- (1)방법
+SELECT ROWNUM RANK, sNo, sNAME, mNAME, SCORE
+    FROM (SELECT * FROM STUDENT S, MAJOR M WHERE S.mNO=m.mNO AND sEXPEL=0
+            ORDER BY SCORE DESC);-- (2)방법
+--4를 누르면  
+-- 제적당한 전체 학생을 조회 후 점수가 높은 순 출력
+--등수           이름         학과      	점수
+--──────────────────────────────
+--1등    홍철수(2021006)     소프트웨어		20
+SELECT ROWNUM RANK, sNAME||'('||sNO||')' sNAME, mNAME, SCORE
+    FROM (SELECT * FROM STUDENT S, MAJOR M WHERE S.mNO=m.mNO AND sEXPEL=1
+            ORDER BY SCORE DESC);-- (1)방법
+SELECT ROWNUM RANK, sNo, sNAME, mNAME, SCORE
+    FROM (SELECT * FROM STUDENT S, MAJOR M WHERE S.mNO=m.mNO AND sEXPEL=1
+            ORDER BY SCORE DESC);-- (2)방법
+COMMIT;
+select mname from major;

@@ -1,0 +1,36 @@
+02/18
+
+*텍스트 마이닝
+ - 문자로 된 비정형 텍스트로부터 가치있는 정보를 얻어내는 분석
+ - 분석절차: 형태소 분석 -> 명사, 동사 형용사 등 의미를 지닌 품사 단어 추출 -> 빈도표 작성 -> 시각화
+ - KoNLP 패키지를 이용
+
+* 분석절차
+1. 필요한 데이터 확보
+2. 특수문자 및 필요없는 문자 제거
+  - gsub(oldStr, newStr, string) 또는 str_replace_all(string, oldStr, new Str) 사용
+3. 명사 추출
+  - ex) nouns <- extractNoun(txt) --> list 형태로 반환
+4. 워드카운트(단어별 빈도표) 생성
+  - ex) wordcount <- table(unlist(nouns))
+5. 데이터프레임화
+  - ex) df_word <- as.data.frame(wordcount, stringsAsFactors = F) , factor 여부 false 필요
+
+* 워드클라우드
+  - 위 분석절차 진행 후 wordcloud함수 이용
+  - ex) wordcloud(words = df_word$word,  freq =  df_word$freq, min.freq = 2, max.words = 200, 			random.order = F, rot.per = 0.1, scale = c(4,0.2), colors=pal )
+
+* 웹 데이터 수집
+1. 정적 웹 크롤링
+ o 단일 페이지 크롤링(rvest 패키지 사용)
+  - url <- 'https://movie.naver.com/movie/point/af/list.nhn' 
+  - text <- read_html(url, encoding = 'CP949')  
+  - nodes <- html_nodes(text, '.movie') 
+  - title <- html_text(nodes)
+
+ 2. 여러 페이지 정적 크롤링
+  - home <- 'https://movie.naver.com/movie/point/af/list.nhn'
+  - site <- 'https://movie.naver.com/movie/point/af/list.nhn?&page='
+  - movie.review <- NULL
+  - for문을 사용하여 여러 페이지를 크롤링
+

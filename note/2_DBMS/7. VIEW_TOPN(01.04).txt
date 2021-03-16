@@ -1,0 +1,22 @@
+01/04
+
+*VIEW / INLINE VIEW / TOP-N
+
+*VIEW(단순뷰, 복합뷰)란?
+ o 행과 컬럼으로 구성된 가상 테이블
+ o 물리적인 저장공간과 데이터를 가지지 않고 다른 테이블이나 뷰에서 파생된 논리적 테이블
+ o 기본 테이블의 데이터가 변경되면 뷰에도 반영
+ o 액세스 제한을 통해 보안 기능 제공 뿐아니라 복잡한 질의를 뷰로 간단하게 표현이 가능
+ o VIEW가 그룹함수, GROPU BY 절, DISTINCT 키워드를 포함한다면 행을 제거 또는 수정/추    가 할 수 없다
+
+*INLINE VIEW란?
+ o 서브쿼리는 SELECT, FROM, WHERE 절에도 어디든 사용 가능한데 FROM 절 상의 서브쿼리
+   를 INLINE VIEW라고 한다.
+ o CREATE OR REPLACE VIEW -> 실제로는 기본 뷰에 대한 정의를 삭제하고 재정의 하는 것
+
+*TOP-N 구문
+ o 컬럼의 값 중 N개의 가장 큰 값 또는 작은 값을 기준으로 질의하는 것
+ o 데이터를 정렬하는 질의를 서브쿼리나 INLINE 뷰로 생성하여 사용한다
+  - 필수요소: ROWNUM(ROW 순서를 나타내는 가상컬럼)
+  - FROM 절상의 SUB QUERY(INLINE VIEW)
+  - SUB QUERY 내의 ORDER BY 절 

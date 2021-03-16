@@ -1,0 +1,25 @@
+01/28
+
+*jQuery
+ - 자바 스크립트 라이브러리 중 가장 인기 있는 라이브러리로 이벤트 대응,
+   애니메이션과 메뉴효과 등에서 가장 단순하고 쉽게 제작할 수 있음
+
+*기본jQuery함수들list  - ${‘selector’).action()
+ 1) hide()
+ 2) show()
+ 3) toggle()
+ 4) html() - 해당 선택자 안에 html코드 삽입
+ 5) text()  - 해당 선택자 안에 text 삽입
+ 6) val('변형될 value') ; value값 변형
+ 7) css('속성', '속성값')
+ 8) each ; 배열 처리함수 
+  - $(배열객체).each(function(index, item){ });
+ 9) addClass ; 문서객체에 class속성을 추가
+10) removeClass ; 클래스 삭제
+11) append
+12) prepend
+13) attr 
+14) 이벤트 관련 함수들
+     click(콜백함수), focus(콜백함수), etc...
+     off(), trigger()..
+15) aJax관련 함수들 : $.get(), $.post(), $.ajax()

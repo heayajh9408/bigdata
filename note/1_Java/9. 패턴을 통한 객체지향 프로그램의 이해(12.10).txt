@@ -1,0 +1,21 @@
+12/10
+
+*패턴을 통한 객체지향 프로그램의 이해
+
+패턴이란?
+ - 객체지향 언어의 장점들을 모아 가장 효율적으로 개발할 수 있도록 만들어 놓은 툴
+
+1. 싱글턴패턴
+ - 어떤 클래스의 객체는 오직 하나인 유일한 객체를 만들어 여러가지 상황에서 동일한 
+   객체에 접근하기 위해 만들어진 해턴
+ - ex) 생성자 FirstClass()///생성자SecondClass() 
+                            ===> SingletonClass.INSTANCE(getSingletonClass())
+
+2. Strategy Pattern
+ - 알고리즘 군을 정의하고 각각의 기능을 부품처럼 캡슐화하여 교환해서 사용할 수 
+   있도록하는 패턴
+ - 쉽게 말해서 부품화 하여 사용!!
+ - ex) super 로봇, standard로봇 , low로봇의 기능
+       ==> fly, missile, knife, shape 등을 부품화하여 사용한다
+
+

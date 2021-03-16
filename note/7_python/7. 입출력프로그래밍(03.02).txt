@@ -1,0 +1,20 @@
+03/02
+
+* 입출력 프로그래밍
+ o 파일에 데이터 저장하고 불러오기
+  - open(file_name, mode, encoding= 'ASCII') 이후 close() 필요
+  - with(file_name, mode ...) as f 이후 close() 불필요
+  - pickle 패키지의 dump()함수를 이용, 피클링을 하기 위해서는 바이너리 쓰기 모드(wb)로 열어야함
+ o CSV 형식 파일 읽기/쓰기
+  - reader :  import csv 후 csv.reader(f) 사용
+  - writer :  ' ' csv.writer(f) 사용
+ o CSV 파일의 자료를 딕셔너리 데이터로 읽기/쓰기
+  - DictReader: csv.DictReader(f) 사용 , header가 있는 경우 fieldnames 사용
+  - DictWriter: csv.DictWriter(f) 사용, header가 있는 경우 fieldnames 사용
+      -> writeheader() , writerows(data)
+ o JSON 데이터 저장하고 불러오기(dump, load)
+  - json.dump(data, mode,  ensure_ascii=False, indent ...)
+      -> eusure_ascii=False 부분이 없으면 한글이 유니코드로 저장
+ o HDF5 파일 읽기/쓰기
+  - h5py 사용: import h5py 이후 read_hdf(), to_hdf()
+  - pandas 사용: pd.DataFrame(data), read_hdf(), to_hdf()

@@ -1,0 +1,42 @@
+02/10
+
+* 데이터시각화
+ o 단계: 데이터 -> 데이터 가공 -> 시각화 -> 꾸미기
+ o 종류: 산점도, 선그래프, 히스토그램, 막대그래프, 밀도그래프 등
+
+* 고 수준 그래프 함수
+ o 그래프를 그릴 때 항상 새로운 그래프를 시작
+  - plot(), barplot(), boxplot(), hist() 등
+ o par()
+  - 그래프를 조정하거나 그래프창의 특성을 지정하기 위해서 사용, 선의 굵기, 종류
+    문자의 크기, 글꼴 등 다양한 변경이 가능
+ o plot(x, y, ...)
+  - x(그래픠의 x축), y(그래프의 y축), ...에는 함수에 전달할 인수들, 파라미터들도 포함
+  - type에 따라 여러 유형의 그래프를 그릴 수 있음
+ o barplot(height, ...) -> 막대그래프
+  - height는 그래프를 구성하는 막대를 설명하는 값의 벡터 또는 행렬
+ o boxplot(formual, data=NULL, ..., subset, na.action=NULL)
+  - 주어진 값을 이용해 box-and-whisker(사분위수) 그래프를 생성
+  - ex) boxplot(count ~ spray, data=InsectSprays, col="lightgray")
+ o hist(x, breaks="Sturges", ...) -> 도수분포표
+  - 주어진 데이터 값의 히스토그램을 계산
+  - x(히스토그램이 필요하 벡터) , breaks(구간설정)
+ o pie()
+ - 시계 또는 반시계 방향으로 표현(clockwise)
+
+* 저 수준 그래프 함수
+ o 새로운 그래프를 생성할 수 없으며 이미 그려진 그래프에 더하기 위해 사용
+  - points(), lines(), abline(), text() 등
+ o points(x, y=NULL, type="p", ...)
+  - 지정된 좌표에 일련의 점을 그리는 일반적인 함수
+  - type은 어떤 유형의 그래프가 그려질지를 지정(p,c,o,h,s,S,n)
+ o line(x, y=NULL, type="l", ...)
+  - 좌표를 다양한 방법으로 가져와서 해당 점을 선분으로 결합
+  - type은 0~6까지 다양한 타입으로 표현이 가능
+ o abline(a=NULL, b=NULL, h=NULL, v=NULL, ...) -> 회귀식 선
+  - 기존 그래프 위에 직선을 추가하는 함수
+  - a, b: 단일 값이어야 하며 절편과 기울기
+  - h: 수평선을 그리기 위한 y값, v: 수직선을 그리기 위한 x 값
+ 
+ o 그래프 파라미터
+  - bg, bty, cex, col, font, lty, mfrow, pch 등

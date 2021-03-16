@@ -1,0 +1,37 @@
+02/19
+
+* 동적 웹 크롤링(셀레니움 패키지 이용) - RSelenium
+1. 특정부분에 text를 입력한 후 엔터한 결과를 크롤링
+ o 원하는 결과 페이지 출력
+  - remDr <- remoteDriver(port=4445L, # 포트번호 
+                      browserName='chrome') # 사용할 브라우저
+  - remDr$open()
+  - remDr$navigate('https://www.youtube.com')
+ o 현재 페이지의 html 소스 가져오기
+  - html <- remDr$getPageSource()[[1]] 
+  - html <- read_html(html)
+ o 원하는 태그의 text 가져오기
+  - youtube_title <- html %>%  html_nodes('#video-title') %>% html_text()
+ o 필요없는 문자들 정리
+
+2. 몇번 마우스 스크롤 다운한 후 크롤링
+ o 원하는 결과 페이지 출력
+ o 마우스 스크롤 다운
+  - remD$executeScript("window.scrollTo(1000,5000)")
+ o 현재 페이지의 html 소스 가져오기
+ o 원하는 태그의 text 가져오기
+
+* 지도시각화
+1. 패키지 준비
+ o install - ggiraphExtra, mapproj, maps, tibble
+2. 행 이름을 변수로
+ o crime <- rownames_to_column(USArrests, var="state)
+3. 지도 정보 가져오기
+ o state_map <- map_data("state")
+4. 지도 시각화
+ o ggChoropleth(data=crime,         # 지도에 표현할 데이터
+            	         aes(fill=Assault,    # 지도에 채워질 변수
+                       map_id=state),     # 지역 변수
+                       map=state_map,  # 위도 경도 지도 데이터
+                       interactive = T)    # 인터랙티브 속성 ...
+

@@ -1,0 +1,21 @@
+12/22
+
+*GUI란?
+ - 사용자가 사용하기 편리하게 그래픽 요소를 가미하여 만들어 놓은 것.
+ - 그래픽 요소를 만들기 위한 컴포넌트들을 AWT라고 한다 (Ex) 버튼, 체크박스 등
+
+#클래스들
+ - 컴포넌트 배치 관련 클래스: BorderLayout, GridLayout, FlowLayout
+ - GUI 구성 관련 클래스: Button, Label, Checkbox, Choice, Scrollbar, List, TextField 등
+ - 그래픽 출력 관련 클래스: Color, Font, Rectable, Point, Graphics, Image 등
+ - 이외 클래스: Frame, Panel, Window, Container, FileDialog, Demension, Event
+
+##명령버튼들##
+ - pack() : 컴포넌트의 사이즈를 컴파일러가 최소한의 사이즈로 정함. 
+ - setSize(가로크기, 세로크기) : 컴포넌트 사이즈를 개발자가 정함
+ - setVisible(true) : 화면에 출력함.
+ - dispose() : 자원을 해제시킴
+
+*Swing 컴포넌트
+ - AWT보다 나중에 만들어져 더 화려하고 진보된 기능을 제공하는 컴포넌트
+ - AWT 컴포넌트와 사용방법이 유사하다 차이점이 있다면 클래스들 앞에 'J'가 붙는다

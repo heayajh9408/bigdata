@@ -1,0 +1,21 @@
+02/01
+
+*Ajax
+ o 웹페이지의 특정부분(한파트)를 업데이트하고 서버와 데이터를 교환하는 기술
+ o 웹페이지의 전체내용을 다시 불러들이지 않고 웹페이지의 일부분을 배경에서 
+    서버와 데이터 교환이 일어나 원하는 부분에 뿌려 줄 수 있는 기술
+
+#load메소드
+ o $(selector).load(URL, data, callback함수);
+  - error 처리 시: responseTxt(요청성공 시 가져올 데이터), statusTxt(요청상태- success, error....)
+                       xhr(XMLHttpRequest 객체)
+# ajax
+ o $.ajax({ url(요청경로), 
+	type(get/post), 
+	data(요청파라미터 값), 
+	dataType(요청결과의 타입 - html,json..), 
+	success(요청성공 시 수행할 콜백함수), 
+	error(요청실패 시 수행할 콜백함수) 
+            })
+  - url과 dataType:json, success를 이용하여 json파일을 읽어올 수 있음
+

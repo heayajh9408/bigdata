@@ -1,0 +1,51 @@
+03/11
+
+* Seaborn
+ o matplotlib을 기반으로 만든 고수준 그래픽 라이브러리
+ o Seaborn으로 그래프를 그리기 위해서 다음 단계 필요
+  - 1) 데이터 준비
+  - 2) 미적속성 설정
+  - 3) 함수를 이용하여 그래프 그리기
+  - 4) 그래프 출력, 저장
+
+*데이터준비
+ o import seaborn 및 결측치 등 확인
+
+* 미적 속성 설정하기
+ o 스타일 지정: set(style= white(기본), 'darkgride', 'whitegride', 'dark' ...)
+ o 컬러 팔레트: set(palette='deep', 'greens' ..)
+ o 컨텍스트 지정(비율): set-context( 'notebook', font-scale=? , rc ...) 등
+
+*Seaborn 함수로 그래프 그리기
+ - hue 속성에 그룹변수를 넣어 그래프 그리기 가능
+ - subplots() 함수를 이용하여 그래프 영역 설정 후 그리기 가능
+ 
+ 1)Relation plots : 관계형 그래프(연속 데이터에서 주로 사용)
+  o scatterplot()
+  o lineplot()
+  o lineplot()
+   - relplot(): lineplot을 서브플롯으로 표현
+ 2) categorical plots; 범주형 그래프
+  o x축이 범주형 데이터 일 경우 산점도
+   - stripplot()
+   - swarmplot: 산점도들이 중첩되지 않음
+  o barplot()
+   - catplot(): barplot을 서브플롯으로 표현
+  o pointplot()
+  o countplot()
+  o boxplot()
+  o violinplot
+ 3) 쌍관계 그래프
+  o pairplot: 
+  o displot()
+ 4) 회귀 그래프
+  o lmplot()
+  o regplot() : 단, hue를 사용할 수 없음
+ 5) 행렬 그래프
+  o heatmap()
+
+* 다중 그래프를 위한 FacetGrid
+ o FacetGrid(data, col, hue...) : 쌍 관계를 그리기 위한 다중 플롯 그리드 생성
+  - FacetGrid.map(func, *args, **kwargs): 각각의 영역에 func 매개변수에 지정하는 함수를 이용해서 그래프를 생성
+
+ 

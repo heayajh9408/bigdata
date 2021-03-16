@@ -1,0 +1,43 @@
+03/09
+
+*데이터프레임과 시리즈
+ o 데이터 그룹화 및 집계
+  - 데이터.groupby(그룹화 할 열 지정)
+  - 데이터.pivot_table(index='', values=[' '], aggfunc='함수명', ...)
+ o 레이블(원핫인코딩)
+  - 한 개의 요소는 True, 나머지 요소는 False로 만들어 주는 기법
+  - sklearn.preprocessing 패키지의 LabelEncoder 필요
+  - iris_df['species'] = le.fit_transform(iris_df['Species'])
+ o 데이터 구조 변경
+  - 와이드 포맷: 가로로 긴 형식의 열 단위 데이터 구조이며 피벗테이블
+  - 롱포맷: 세로로 긴 형식의 행 단위 데이터 구조로 언피벗테이블
+ o melt
+  - 열의 이름을 variable에 저장하고 열의 값을 value에 저장하여 언피벗팅
+  - 데이터_melt(id_vars[], var_name='', value_name='',...)
+ o pivot_table
+  - 롱포맷 -> 와이드 포맷으로 피벗팅
+  - 데이터.pivot_table(index='', columns=[''], values=[''], ...)
+
+* 데이터프레임에 함수 적용
+ o apply
+  - 행 또는 열 단위로 함수적용 (데이터프레임이나 시리즈에서 적용 가능)
+  - 데이터.apply(적용함수, axis='')
+ o applymap
+  - 각 요소 하나하나 별로 적용 (데이터프레임에서만 가능)
+  - 데이터.applymap(함수)
+ o map
+  - 시리즈타입의 벡터에서만 적용 가능
+  - 데이터.map()
+
+* 일괄 변경하기(결측치나 특정값)
+ o fillna(결측치를 어떤 측정값으로 전부 변경)
+ o replace(to_value, new_value, inplace=)
+  - to_value를 new_value로 변경
+  - inplace: 변경 내용 데이터 프레임 적용 여부
+ o where()
+ - 조건이 만족하는 요소는 그대로 출력하며 불만족 시 결측치로 대체 (반)mask
+ o dropna(axis='')
+  -  결측치가 있는 데이터를 누락
+ o astype()
+  - 판다스의 dtype 속성을 변경
+

@@ -1,0 +1,32 @@
+12.28
+
+4. 형변환함수
+ o 함수들
+  - TO_CHAR(숫자 OR 날짜, 패턴): 날짜 OR 문자를 패턴에 맞게 문자로 형변환
+  - TO_DATE(문자, 패턴): '81/01/01' 등의 문자를 패턴에 맞게 날짜형으로 변환
+  - TO_NUMBER(문자, 패턴): 문자를 패턴에 맞게 숫자형으로 변환
+5. NULL 관련 함수
+ o 함수들
+  - NVL(NULL 일수도 있는 데이터, NULL인 경우 대신할 값)
+6. 그외 EXTRACT, 레벨별 출력
+ o 함수들
+  - EXTRACT(): 입력값이 날짜 데이터에서 지정된 값을 추출
+  - 레벨별출력: LEVEL, START WITH(최상위레벨), CONNECT BY PRIOR(레벨들 연결조건)
+
+* 그룹함수( 여러 행 or 테이블 전체의 행에 함수를 적용하여 하나의 결과값을 가져오는 함수)
+
+1. 그룹함수
+ o 함수들
+  - SUM, AVG, COUNT, MAX, MIN, STDDEV(표준편차), VARIANCE(분산)
+
+2. GROUP BY 절
+ o 어떤 컬럼 값을 기준으로 그룹함수를 적용하는 경우 사용
+ o ex)
+  - SELECT 컬럼명, 그룹함수 FROM 테이블명 WHERE 조건 GROUP BY 컬럼명;
+ o GROUP 절에서는 컬럼의 별칭을 사용할 수 없음
+
+3. HAVING 조건
+ o SELECT 절의 조건은 WHERE 절을 사용하지만 그룹함수의 경우 HAVING 절을 사용
+ o HAVING 절은 GROUP BY 절 앞에 기술도 가능하지만 다음에 기술하는 것을 권장
+
+#SELECT 절에 그룹함수가 포함된다면 GROUP BY 절에 각각의 열이 명시되어야 한다

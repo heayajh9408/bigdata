@@ -1,0 +1,33 @@
+12/15
+
+*API-II
+
+1. 수학적 계산에 사용되는 클래스 Math
+ - Math.ceil   --> 소수점에서 올림
+ - Math.round--> 소수점에서 반올림
+ - Math.floor --> 소수점에서 버림
+ - Math.random or Random --> 난수발생
+
+2. Object클래스 사용방법
+ - 다른 모든 클래스들은 Object 클래스를 상속 받음
+ - Object 클래스의 대표적인 메소드들
+  (toString, equals 등등 --> 해당 메소들을 오버라이드하여 많이 사용)
+
+#String에 있는 equals과 Object에 있는 equals이 다르기 때문에 오버라이드하여 사용해야 함
+
+3. Scanner
+- 타이핑하는 문자열 or 입출력 프로그래밍에서 값을 읽거나 무엇인가 얻어올 때 사용
+- Scanner로 답을 받을 때 next()와 nextLine() 이용 시 버퍼 내용 확인하면서 사용해야 함(\n)
+
+4. Wrapper
+- 기초데이터를 객체데이터로 변환해줌
+- ex) byte- > Byte, int -> Integer, long-> Long 등
+
+5.Timer
+- 일정한 시간이 되면 TimerTask 객체가 작동되게 함
+- 단, TimerTask클래스는 추상클래스이므로, TimerTask를 상속받는 클래스를 만들어 사용
+
+6.DecimalFormat
+- 숫자의 형식을 지정해주는 클래스이다
+- 숫자자리에 #(있으면출력, 없으면 출력안함), 0(반드시 출력)
+- (,) / % / E(지수형) 사용이 가능

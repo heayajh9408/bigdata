@@ -1,0 +1,42 @@
+package com.lec.ex1_student;
+
+/*
+ * 2020.12.04~ Lim JaeHyun
+ */
+public class StudentMain2 {
+	public static void main(String[] args) {
+		Student[] kim = { new Student("Á¤¿ì¼º", 90, 90, 90), new Student("±èÇÏ´Ã", 90, 90, 91),
+				new Student("È²Á¤¹Î", 80, 80, 80), new Student("°­µ¿¿ø", 80, 80, 81), new Student("À¯¾ÆÀÎ", 70, 70, 70) };
+		int[] sum = new int[5];
+		double[] avg = new double[5];
+		String[] arr = { "ÀÌ¸§", "±¹¾î", "¿µ¾î", "¼öÇÐ", "ÃÑÁ¡", "Æò±Õ" };
+		System.out.println("¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á");
+		System.out.println("\t\t\t ¼ºÀûÇ¥ \t\t\t");
+		System.out.println("-----------------------------------------------------------------");
+		for (String s : arr) {
+			System.out.print("\t" + s);
+		}
+		System.out.println();
+		System.out.println("-----------------------------------------------------------------");
+		for (Student li : kim) {
+			li.print();
+			sum[0] += li.getKor();
+			sum[1] += li.getEng();
+			sum[2] += li.getMat();
+			sum[3] += li.getTot();
+			sum[4] += li.getAvg();
+		}
+		System.out.println("-----------------------------------------------------------------");
+		System.out.print("\tÃÑÁ¡");
+		for (int i = 0; i < avg.length; i++) {
+			avg[i] = sum[i] / kim.length;
+			System.out.print("\t " + sum[i]);
+		}
+		System.out.print("\n\tÆò±Õ");
+		for (double a : avg) {
+			System.out.print("\t" + a);
+		}
+		System.out.println();
+		System.out.println("¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á");
+	}
+}

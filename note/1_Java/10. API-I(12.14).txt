@@ -1,0 +1,27 @@
+12/14
+
+*API-I
+
+API란?
+- 여러가지 기능들을 정의해 둔 클래스, 쉽게 말해 만들어져 있는 기능들이다
+
+1. 문자열에 관한 클래스 :String
+- String은 객체자료형이다.
+- 즉, String str = "Hello"는 String str = new String("Hello") 이다.
+- 대표적인 기능(메소드)들
+  (concat, substring, toUpperCase 등등)
+
+#String의 문제점
+ - 메모리를 과소비한다 --> String객체의 경우 데이터에 변화가 생기면 기존 것을 버리고 
+                                   새로운 메모리를 활용한다.
+                              --> 그래서 StringBuffer or StringBuilder가 필요하다
+
+#StringBuffer or StringBuilder
+ - 객체 내부에 있는 버퍼에 내용을 저장해두고 그 안에서 추가, 수정 등의 작업을 한다.
+ - 대표적인 기능들
+   (append, insert, delete 등등)
+
+2. 날짜 API
+- 날짜와 시간을 표현할 때 사용하는 클래스를 사용한다.
+- Calendar, GregorianCalendar, Date 등이 있다.
+- Calendar 클래스는 싱글톤 클래스이다.

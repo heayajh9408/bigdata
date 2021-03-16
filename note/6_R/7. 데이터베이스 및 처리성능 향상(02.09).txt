@@ -1,0 +1,41 @@
+02/09
+
+* 데이터베이스 이용
+ - sqldf(x, stringAsFactors) 함수를 이용하여 데이터프레임의 데이터를 SQL 문장을 이용하여 조회
+
+* SQL select 구문
+ - 일반적인 sql 구문와 비슷하게 사용하나 열 이름에 Sepal.Length처럼 점(.)이 있으면 ""으로 묶어야함
+ - ex) sqldf('select distinct Species from iris')
+ - distinct: 중복된 행을 제거하여 한 번만 출력    /    where: 데이터를 조회하는 조건을 지정
+ - group by: 해당 팩터별로 집계    /    order by: 정렬하여 데이터 조회
+ - limit n: 상위 n개 행을 출력(limt m, n)    /    A join B on ~ : 두 개 이상 데이터셋을 이용하여 조인
+
+* RJDBC
+ - R에서 JDBC를 이용하여 데이터베이스에 연결하기 위한 패키지
+ - 드라이버 클래스 로드 -> JDBC(driverClass"", classPath="")
+ - 데이터베이스 연결 -> dbConnect(drv, ...)
+ - 테이블 데이터 조회 -> dbGetQuery(con, "statement", ...)
+ - 데이블 전체 데이터 조회 -> dbReadTable(con, "name", ...)
+ - 데이터 수정 -> dbSendUpdate(con, "statement", ...)
+ - 데이터베이스 연결 종료 -> dbDisconnect(con)
+
+* plyr 패키지
+ - R의 split-apply-combine 패턴을 구현하는 깨끗하고 일관된 도구 세트로 데이터의 분할, 함수 적용,
+   재조합 등에 사용하는 함수를 포함, apply(), lapply(), sapply() 함수를 대체할 수 있음
+ - xyply(.data, ...)
+ - x: 입력 데이터 타입 (a: array, l: list, d: data.frame, m: multiple inputs, r: repeat multiple times)
+ - y: 출력 데이터 타입 (a: array, l: list, d: data.frame, m: multiple inputs, r: repeat multiple times, _: nothing)
+
+* reshape 패키지
+ - 데이터의 구조를 변경하기 위한 함수를 제공
+ - melt(data, ..., na.rm=FALSE, value.name="value"): 열이름과 값을 variable, value 열에 저장된 형태로
+   변환하는 함수 제공
+ - cast(): melt된 데이터프레임을 배열 또는 데이터 프레임으로 복구
+    -> dcast(): 캐스팅 한 결과가 데이터 프레임  타입
+    -> acast(): 캐스팅 한 결과의 타입이 벡터/행렬/배열
+
+* 데이터 테이블
+ - 데이터프레임에서 상속받으며 짧고 유연한 구문으로 파일 읽기, 쓰기, 내부조인 등을 빠르고 메모리 효율적으로 제공
+ - 간결함, 일관성, 유동송, 자동화의 장점을 보유
+ - data.table(..., keep.rownames=FALSE, check.names=FALSE, key=NULL, stringAsFactors=FALSE)\
+ - data.table 패키지의 fread()함수

@@ -1,0 +1,25 @@
+12/31
+
+3. DCL(Data Control Language) : 데이터베이스 사용자의 권한 제어
+ o GRANT: 데이터 베이스 객체에 권한 부여
+ o REVOKE: 이미 부여된 데이터베이스 객체의 권한을 취소
+ o COMMUT: 트랜잭션  확정
+ o ROLLBACK: 트랜잭션 취소
+ o SAVEPOINT: 복귀지점 설정
+
+
+*Sequence란?
+ - 순차적인 번호를 자동으로 생성하는 객체로 테이블과 독립적으로 생성 및 저장이 가능하다.
+
+*특징
+ - 시퀀스로 생성되는 번호는 유일함으로 기본 테이블에서 인조 Primary key 생성 시 사용
+ - 여러 테이블에 의해 공유가 가능하다
+ - 테이블과 관계없이 생성, 저장, 증가, 감소한다
+
+* 문법
+-->CREATE SEQUENCE sequence_name 
+    [INCREMENT BY n]  [START WITH n] 
+    [MAXVALUE n] [MINVALUE n]
+    [CYCLE | NOCYCLE]
+    [CACHE n | NOCACHE];
+

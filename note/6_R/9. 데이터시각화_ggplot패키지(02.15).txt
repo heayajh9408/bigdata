@@ -1,0 +1,38 @@
+02/15
+
+*데이터 시각화(ggplot2 패키지)
+ - 데이터와 시각화 요구를 객체화시켜 시각화를 구현
+ - Qplot(): 손쉽고 빠르게 시각화, ggplot(): 데이터와 시각화 요소를 분리하여 시각화
+ - 1. 그래프초기화(데이터셋, 변수설정)
+ - 2. 그래프의 결과물에 대응하는 geom함수
+ - 3. 제목, 부제목, 축이름 등 부가 요소를 추가
+
+* 산점도, 적합도
+ - ggplot(data= , aes(x=, y=)) + geom_point()
+ - aes() 함수로 미적 속성을 지정하고 데이터의 변수를 이용해 지정 가능
+ - geom_smooth(method)를 이용하여 산점도와 함께 추세선을 표현
+
+* 히스토그램
+ - ggplot(data=, aes(x=) + geom_histogram()
+ - 연속형 자료형에서 도수분포표(범주형의 도수분포표는 불가) !! 데이터의 형 파악
+
+* 상자도표
+ - ggplot(data=, aes(y=)) + geom_boxplot()
+ - 주로 이상치를 처리하기 위해 사용
+
+* 바이올린 도표
+ - ggplot(data=, aes(x=,y=)) + geom_violin()
+ - boxplot과 밀도도표를 합쳐놓은 듯한 도표
+
+* 추세선
+ - ggplot(data=, aes(x=,y=)) + geom_line(추세선) + geom_smooth(method, 적합도선)
+ - 시계열에서 데이터의 흐름 표현
+
+* 막대도표
+ - ggplot(data=, aes(x=)) + geom_bar(stat='count') 
+ - 범주형 자료의 빈도를 나타냄
+
+
+
+
+

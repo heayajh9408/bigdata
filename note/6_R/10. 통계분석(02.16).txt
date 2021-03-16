@@ -1,0 +1,40 @@
+02/16
+
+* 통계분석
+ o t-test 분석
+ - 두 그룹간 평균의 차이가 통계적으로 유의한지 검증
+ o ANOVA(분산분석)
+  - 세그룹 이상 집단의 평균 차이가 유의한지 검증
+
+* 두 그룹간의 평균의 차이가 유의한지 분석
+ 1. 도표로 차이의 유의성을 표현 (tapply, by, summaryBy, aggregate..)
+ 2. 그래프로 시각화된 유의성 표현 (바이올린도표, 산점도, 상자도표)
+ 3. 통계적으로 유의한지 검증
+  o 일원표본 t-test
+   - a <- ToothGrowth[ToothGrowth$supp=='OJ','len']
+   - b <- ToothGrowth[ToothGrowth$supp=='VC','len']
+   - t.test(a-b), t.test(a, b)
+   - p-value가 0.05보다 작은 경우 귀무가설(두 그룹의 평균이 같다)을 기각한다
+   - p-value가 0.05보다 큰경우 귀무가설을 기각하지 못한다
+  o 이원표본 t.test (등분산성 테스트 -> t-test분석)
+   - var.test(len~supp, data=ToothGrowth)
+   - p-value가 0.05보다 작은 경우 귀무가설(두 그룹의 분산이 같다)을 기각함 - 등분산성이 성립되지 않음
+   - p-value가 0.05보다 큰경우 귀무가설을 기각하지 못한다. - 등분산 성립
+   - t.test(len~supp, data=ToothGrowth, var.equal=F)
+   - var.equal=F : 두그룹의 등분산성이 성립되지 않는 경우, var.equal=T : 두그룹의 등분산성이 성립되지 않는 경우
+   - p-value가 0.05보다 작은 경우 : 귀무가설을 기각
+   - p-value가 0.05보다 큰 경우 : 귀무가설을 기각할 수 없음
+
+* 3개 이상의 집단간 평균의 차이를 비교: 분산분석(ANOVA)
+ o aov()
+  - result <- aov(Sepal.Length ~ Species, data=iris) # Species이 범주형, 연속형
+  - summary(result) 
+  - F값이 0.05보다 작으면 귀무가설을 기각
+  - F값이 0.05보다 크면 귀무가설을 기각할 수 없다
+
+ o anova()
+  - fit <- lm(mpg ~ cyl , data=mtcars)
+  - fit
+  - anova(fit)
+  - F값이 0.05보다 작으면 귀무가설을 기각
+  - F값이 0.05보다 크면 귀무가설을 기각할 수 없다

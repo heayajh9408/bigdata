@@ -1,0 +1,131 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <style>
+        #header{
+            width:1000px; height:150px;
+            overflow:hidden; margin:0 auto;
+        }
+        #header .left{
+            float:left;border:1px solid gray;
+            width:150px; height:150px; border-radius:20px 0 20px 0;
+            background-color:lightgray; 
+        }
+        #header .center{
+            float:left; border:1px solid gray;
+            width:693px; height:150px; border-radius:0 0 20px 20px;
+            background-color:lightgray;
+        }
+        #header .right{
+            float:left; border:1px solid gray;
+            width:150px; height:150px; border-radius: 0 20px 0 20px;
+            background-color:lightgray;
+        }
+        #content{
+            width:1000px; height:300px;
+            overflow:hidden; margin:0 auto;
+        }
+        #content .left{
+            float:left;border:1px solid gray;
+            width:150px; height:300px; border-radius: 0 20px 20px 0;
+            background-color:lightgray; 
+        }
+        #content .center ul{
+            overflow:hidden;
+        }
+        #content .center ul li{
+            float:left; list-style:none;
+            margin:10px; font-weight:bold;
+            font-size:20px ;
+        }
+        #content .center .java{
+            text-align:center; padding:30px;
+        }
+        #content .center{
+            float:left; border:1px solid gray;
+            width:693px; height:350px; border-radius:20px 20px 20px 20px;
+            background-color:lightgray;
+
+        }
+        #content .right ol li:nth-child(10){
+            color:red;
+        }
+        #content .right ol li:nth-child(11){
+            color:red;
+        }
+        #content .right ol li:nth-child(12){
+            color:red;
+        }
+        #content .right{
+            float:left; border:1px solid gray;
+            width:150px; height:300px; border-radius: 20px 0 0 20px;
+            background-color:lightgray;
+        }
+        #footer{
+            width:1000px; height:150px;
+            overflow:hidden; margin:0 auto;
+        }
+        #footer .left{
+            float:left; border:1px solid gray;
+            width:150px; height:150px; border-radius: 0 20px 0 20px;
+            background-color:lightgray; 
+        }
+        #footer .center{
+            float:left; border:1px solid gray;
+            width:693px; height:150px; border-radius:20px 20px 0 0;
+            background-color:lightgray;
+        }
+        #footer .right{
+            float:left; border:1px solid gray;
+            width:150px; height:150px; border-radius: 20px 0 20px 0;
+            background-color:lightgray;
+        }
+
+    </style>
+</head>
+<body>
+    <div id=header>
+        <div class=left></div>
+        <div class=center></div>
+        <div class=right></div>
+    </div>
+    <div id=content>
+        <div class=left></div>
+        <div class=center>
+            <ul>
+                <li>menu1</li>
+                <li>menu2</li>
+                <li>menu3</li>
+            </ul>
+            <div class="java">
+                <h2>빅데이터 UI 전문가 양성</h2>
+                본 과정은 좋다. 아주 좋다. 친구들 좋다
+            </div>
+        </div>
+        <div class=right>
+            <ol>
+                <li>태그</li>
+                <li>전체(*)</li>
+                <li>id, class</li>
+                <li>속성</li>
+                <li>후손, 자손(>)</li>
+                <li>동위</li>
+                <li>반응</li>
+                <li>상태</li>
+                <li>구조</li>
+                <li>문자</li>
+                <li>링크</li>
+                <li>부정</li>
+            </ol>
+        </div>
+    </div>
+    <div id=footer>
+        <div class=left></div>
+        <div class=center></div>
+        <div class=right></div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,25 @@
+03/03
+
+* DB연동
+ o SQLite 데이터 베이스 연결
+  - 별도의 서버프로세스 없이 DB액세스할 수 있도록 만든 간단한 디스크 기반 데이터베이스를 제공하는 C라이브러리
+  - 프로토타입(시제품 나오기 전까지 제품)을 만들 때까지 사용. 정식 제품은 오라클이나 다른 DMBS를 이식.
+  - sqlite3 모듈 사용
+    -> 데이터베이스 연결 객체 connection 사용, cursor() 객체 생성, commit(), close() ...
+    -> cursor.excute(sql문)
+  - select 문의 결과를 받는 함수
+    -> fetchall() - 결과를 모두 받을 때, 
+    -> fetchone() - 결과를 한 행씩 받을 때, 
+    -> fetchmay(n) - 결과를 n행 받을 때
+  - SQL 구문에 파라미터 사용
+    ->qmark, named(추천) 사용
+         ex) cursor.execute("SELECT * FROM MEMBER where NAME=:name", {'name':name})  
+ o 오라클 데이터 베이스 연결
+  - import cx_Oracle
+  - 데이터 베이스 설정(DBMS가 있는 서버 주소, 포트번호, sid등을 설정)
+    -> oracle_dsn = cx_Oracle.makedsn(host="localhost", port=1521, sid="xe")
+  - 이 외 다른 연결방법과 유사
+ o MariaDB 데이터베이스 연결
+  - import pymysql
+  - pymysql.connect(host="localhost", port=3306, db="kimdb", user="root", passwd="mysql",
+                      		charset="utf8", autocommit=True)

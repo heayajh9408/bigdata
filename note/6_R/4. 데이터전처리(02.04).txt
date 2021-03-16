@@ -1,0 +1,79 @@
+02/04
+
+* 데이터 전처리
+ o write.table(data, file="파일명", append=FALSE, quote=TRUE, sep=",", row.names=TRUE)
+  - quote: TRUE시 필드의 값은 "로 묶음, sep:필드의 구분자 지정(Default는 공백), row.names: 각 행의 이름
+ o data <- read.table("파일명", header=TRUE, sep=",", stringAsFactors=FALSE, comment.char="#",
+    fileEncoding="UTF-8", encoding="CP949")
+  - header: TRUE 시 첫 번째 행을 열 이름으로 지정, stringAsFactors: TRUE 시 문자열을 Factor 형태로 지정
+    fileEncoding: 파일의 인코딩을 지정, encoding: R의 인코딩을 지정
+ o write.csv (data, file="파일명")
+  - CSV 파일 형식으로 저장할 경우 사용하면 파라미터의 수를 줄일 수 있음
+ o data <- read.csv (file-"파일명")
+  - CSV 형식 파일 조회
+
+# apply 계열 함수
+ o apply (X, MARGIN, FUN, ...) -> 행렬이나 배열 차원별로 지정한 함수 적용
+  - X: 대상 자료 객체(행렬, 배열)
+  - MARGIN: 차원을 입력, 1이면 행별로 함수 적용, 2이면 열별로 함수 적용, 3이면 차원별로 적용
+ o lapply (X, FUN, ...) -> list apply, 함수를 적용한 결과를 list로 반환
+  - X: 함수를 적용할 벡터, 리스트 객체
+ o sapply (X, FUN, ..., SIMPLIFY=TRUE, USE.NAMES=TRUE) -> lapply와 유사하나 결과를 리스트 대신 행렬, 벡터로 반환
+  - SIMPLIFY: TRUE(기본값) 시 연산 결과를 벡터, 행렬 등으로 반환, FALSE 시 리스트로 반환
+  - USE.NAMES: TRUE(기본값) 시 이름 속성도 반환, FALSE이면 이름 속성 없이 반환
+ o vapply (X, FUN, FUN.VALUE, . . . , USE.NAMES=TRUE) -> sapply와 유사하나 FUN의 모든 값이 FUN.VALUE와 호환되는지 확인
+  - FUN.VALUE: 반환하는 데이터의 유형을 지정, FUN에서 리턴 값을 위한 템플릿
+ o mapply (FUN, . . ., MoreArgs=NULL, SIMPLIFY=TRUE, USE.NAMES=TRUE) -> sapply와 유사하나, 여러 개 인자를 함수에 전달
+  - MoreArgs: FUN 함수에 전달할 다른 인자 목록
+ o tapply (X, INDEX, FUN=NULL, . . . , default=NA, simplify=TRUE) -> 그룹별 처리를 위한 apply로 대상은 list이다
+  - INDEX: X와 같은 길이의 하나 이상의 범주형 변수(factor)로 범주형변수 타입으로 강제 형변환
+  - default: 기본값은 NA이며 결측값일 경우 출력될 값을 지정
+  - SIMPLIFY: TRUE(기본값) 시 스칼라 모드 배열을 반환, FALSE 시 list모드의 배열을 리턴
+ o by (data, INDICES, FUN, . . . , simplify=TRUE)
+  - INDICES: 팩터 또는 팩터 리스트
+  - SIMPLIFY: TRUE(기본값) 시 스칼라 모드 배열을 반환, FALSE 시 list모드의 배열을 리턴
+ o summaryBy (formula, data=parent.frame(), id, ....)
+  - formula: 포뮬러를 지정, data: 데이터프레임, id: 	데이터가 그룹화되지 않지만 출력에 나타나야 하는 변수를 지정하는 포뮬러
+ o orderBy (formula, data)
+  - 데이터 프레임의 특정 변수로 데이터 프레임의 행을 정렬(ordering, sorting)
+ o sampleBy (formula, frac: 0.1, replace=FALSE, data: parent.frame)
+  - frac: 추출할 샘플의 비율이며 기본값은 0.1(10%)
+  - replace: 복원추출 여부 설정, 기본값(FALSE) 시 비복원 추출, TRUE 시 복원추출
+ o 포뮬러
+  - 응답변수 ~ 예측변수 -> Y ~ X -> fit <- lim(Y ~ X)
+  - 응답변수=종속변수, 예측변수=독립변수, ~는 함수로 모델링 했다고 인식
+ o split (x, f, drop = FALSE, ...)
+  - 벡터 또는 데이터 프레임 x의 데이터를 범주형변수(팩터) f 로 정의 된 그룹으로 나눔
+  - x: 그룹으로 나눌 값을 포함한 벡터 또는 데이터 프레임
+  - y: 그룹화를 정의하기 위한 팩터 또는 팩터를 포함하는 리스트
+ o  데이터셋 결합
+  - cbind: 열 단위로 데이터 결합
+  - rbind: 행 단위로 데이터 결합
+  - merge: 공통된 열을 기준으로 데이터를 병합
+ o 데이터정렬 
+  - sort() 정렬된 데이터 반환
+  - order() 정렬된 데이터의 index 반환
+  - decreasing: FALSE(기본값)일 경우 오름차순 정렬, TRUE일 경우 내림차순 정렬
+ o table
+  - 데이터를 팩터로 묶을 수 있는 가능한 모든 쌍의 조합을 카운트 한 수의 표를 생성
+  - 시각화 할 때 주로 사용
+ o aggregate
+  - 데이터를 하위 집합으로 분할하고 각각에 대한 요약통계를 계산하여 결과를 편리한 형식으로 반환
+  - tapply 와 다르게 대상열이 하나이상 가능함
+ o which()
+  - 벡터 또는 배열에서 주어진 조건을 만족하는  값이 있는 곳의 색인을 탐색
+  - which.min, which.max
+
+
+
+
+
+
+
+
+
+
+
+
+
+
