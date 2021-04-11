@@ -1,0 +1,22 @@
+03/17
+
+*웹데이터수집 - 정적 웹 크롤링
+
+*BeautifulSoup과 parser
+ o 구문분석, 트리탐색, 검색 및 수정을 위한 문서를 분석하고 필요한 것을 추출하는 도구
+  - BeautifulSoup(makrup, "html.parser")
+
+* 정적 웹 데이터 수집(정적 웹 크롤링)
+ o requests 모듈(GET 요청)
+  - GET은 HTTP 요청(Request) 방식 중 하나
+  - requests.get('') : 지정된 리소스에서 데이터를 가져오며 .content를 사용하여 내용을 바이트 단위로 볼 수 있음
+  - 상태 코드: 200(성공), 404(요청 URL 없음), 406(웹크롤링 불가)
+ o BeautifulSoup 모듈을 활용한 웹 데이터 수집
+  - HTML, XML 등 Markup언어를 crawling 하기 위한 대표적인 모듈
+  - ex)
+    ->url = "https://finance.naver.com/marketindex"
+    ->marketindex = requests.get(url)
+    ->soup = BeautifulSoup(marketindex.content, "html.parser")
+ o 크롤링을 막아 놓으 사이트 크롤링
+  - headers= {'User-agent':'Mozilla/5.0'}
+     -> html = requests.get(url, headers=headers)

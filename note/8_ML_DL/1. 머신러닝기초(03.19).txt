@@ -1,0 +1,18 @@
+03/19
+
+* 머신러닝 프로그램 방식
+ o tensorflow
+  - tensorflow.keras.models import Sequential :모델 생성
+  - tensorflow.keras.layers import Dense : 입력값과 출력값
+ o 데이터 확보 및 생성
+ o 데이터 전처리 : 훈련데이터셋, 검증데이터셋, 시험데이터 셋,...
+ o 모델 구성
+  - model = Sequential()
+  - model.add(Dense(1, input_dim=1)) # input_dim=1:독립변수 1개, target데이터:1
+ o 모델 학습과정 설정
+  - model.compile(loss="", optimizer="", metrics=[''])
+ o 모델 학습 시키기
+  - hist = model.fit(scaled_data_C, scaled_data_F, epochs=, verbose=)
+ o 모델 평가(시험데이터 셋으로)
+  - model.evaluate(X_val, Y_val, batch_size=1)
+ o 모델 사용(입력값을 주어서 예측값을 받기)

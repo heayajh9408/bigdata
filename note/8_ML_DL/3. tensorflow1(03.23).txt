@@ -1,0 +1,38 @@
+03/23
+
+* tensorflow1
+ o import tensorflow.compat.v1 as tf 
+  - tf.disable_v2_behavior() 필요
+ o 그래프정의 -> sess=tf.Session() 실행 -> sess.run()을 통해 값을 확인
+
+* tensorflow v1을 이용한 linear regression을 구현
+ o 독립변수 x가 한 개( cost 함수가 최소가 되는 W와 b를 탐색)
+  - Weight & Bias (처음에는 랜덤 값을 셋팅한 후 학습과정에서 변경): tf.Variable()
+  - Hypothesis: H=W*x +b
+  - cost function(최소제곱법): cost = tf.reduce_mean(tf.square(H - y))
+  - optimizer=tf.train.GradientDescentOptimizer(learning_rate=)
+  - train = optimizer.minimize(cost)
+  - sess = tf.Session()
+  - sess.run(tf.global_variables_initializer()) 이후 학습
+ o predict를 하기 위한 placeholder 이용
+  - 그래프 실행 단계에서 값을 던져줌
+  - tf.placeholder()
+ o 독립변수 x가 여러개인 linear regression
+  - X = tf.placeholder(shape=[None, 3], dtype=tf.float32)
+  - Y = tf.placeholder(shape=[None, 1], dtype=tf.float32)
+ o 데이터 간 scale 맞추는 방법
+  - normalization = X - Xmin / Xmax - Xmin = sklearn.preprocessing.MinMaxScaler 이용
+  - standardization =  X - Xmean(평균) / Xstd(표준편차) = sklearn.preprocessing.StandardScaler
+  - 데이터 scale이 다른 경우 예측을 할 수 있으나 제대로 되지 않음
+
+* logistic Regression = Binary classification(2개 그룹)
+ o  linear regression이 안되는 이유
+  - 데이터에 따라 정확하지 않을 값을 도출할 수 있고 0과 1로 된 데이터는 해결 할 수 없음
+  - 데이터에 따라 그래프가 변하며 1보다 크거나 0보다 작은 값이 도출될 수도 있음
+ o Hypothesis
+  - logits = tf.matmul(X, W) + b
+  - H = tf.sigmoid(logits)
+  - sigmoid function은 입력으로 어떤 값이 들어가도 0과 1사이의 값으로 바인딩
+
+* multinomial classification(3개이상 그룹)
+ o 3개이상의 그룹 이용 시 종속변수 원핫인코딩 필요

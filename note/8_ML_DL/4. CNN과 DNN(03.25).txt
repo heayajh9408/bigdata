@@ -1,0 +1,33 @@
+03/25
+
+* CNN
+ o 여러개의 feature map(특징맵)을 만들어 분류하는 완전 연결 계층으로 이미지, 동영상을 분석 시 주로 사용
+  - 데이터의 지식이 아닌 특징을 추출하여 특징들의 패턴을 파악
+
+* 모델 구성
+ o Conv2D(필터갯수, 필터사이즈, activation_fun, 입력사이즈)
+  - model = Sequential()
+  - model.add(Conv2D(32, kernel_size=(3,3), activation="relu", input_shape=(24,24,3)))
+  - model.add(Conv2D(64, kernel_size=(3,3), activation="relu"))
+  - model.add(MaxPool2D(pool_size=(2,2))) # 2*2에서 제일 큰값만 뽑아 이미지 축소
+  - model.add(Flatten()) # 2차원 이미지데이터를 1차원으로
+  - model.add(Dense(128, activation="relu"))
+  - model.add(Dense(3, activation="softmax"))
+
+* accuracy 늘리기
+ o 데이터 확보, 데이터 부풀리기(imageDataGenerator)
+  - ImageDataGenerator(rescale=1./255,       # 정규화작업
+                            rotation_range=10,
+                            width_shift_range=0.2,
+                            height_shift_range=0.2,
+                            shear_range=0.7,         #0.7라이안 밀림
+                            zoom_range=[0.9,2.2],  # 0.9배~2.2배
+                            horizontal_flip=True,    # 수평방향으로 뒤집기
+                            vertical_flip=True,        # 수직방향으로 뒤집기
+                            fill_mode='nearest')     #이미지를 회전
+
+# 과적합 발생 시 dropout으로 처리
+
+* DNN
+ o 모델 내 은닉충을 늘려서 학습의 결과를 향상시키는 방법
+  - 스스로 분류레이블을 만들어 내고 공간을 왜곡하고 데이터를 구분짓는 과정을 반복하여 최적의 결과를 도출

@@ -1,0 +1,17 @@
+03/18
+
+* 웹데이터수집 - 동적 웹 크롤링
+
+* 셀레니움
+ o 브라우저의 동작을 자동화 해주는 프로그램
+  - 셀레니움 WebDriver()를 사용하여 브라우저에 접근하고 동작을 제어할 수 있는 편리한 api 제공
+ o 다양한 기능들
+  - driver.get('url') : 해당 페이지 이동
+  - driver.find_element~ : 해당 페이지 소스 접근
+  - send_keys(''): 텍스트 입력
+  - from selenium.webdriver.common.keys import Keys : 이벤트 처리
+        -> elem.send_keys(Keys.RETURN) # Enter 키  등등
+  - driver.close() : 드라이버 종료
+
+# 예제 참조
+# 인터넷 속도에 따른 time 고려 필요
