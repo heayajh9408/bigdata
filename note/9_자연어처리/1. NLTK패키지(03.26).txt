@@ -1,0 +1,15 @@
+03/26
+
+* NLTK 패키지가 제공하는 주요 기능
+ o 토큰 생성
+  - from nltk.tokenize import 
+  - sent_tokenize: 문장 단위의 토큰 리스트 출력
+  - word_tokenzice: 단어 단위의 토큰 리스트 출력
+  - RegexpTokenizer: 토큰화에 포함될 문자들을 정규표현식으로 이용
+ o 형태소 분석
+  - 어간추출: PoterStemmer, LancasterStemmer 단, 어간 추출 시 의미가 달라질 수 있어 원형복원 필요
+  - 원형복원: WordNetLemmatizer
+ o 품사 태깅
+  - from nltk.tag import pos_tag
+  - 특정 형태소 태그 추출 
+  - 문서에 사용된 단어(토큰)의 사용빈도 파악 클래스 : Text(), FreqDist()
