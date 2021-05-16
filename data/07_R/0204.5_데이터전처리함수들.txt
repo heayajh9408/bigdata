@@ -1,0 +1,19 @@
+apply ; 계열 함수를 이용하면 반복문 사용보다 코드 최소화, 수행속도 빠름
+- apply ; 행렬이나 배열 차원별로 지정함 함수 적용
+- lapply ; list apply (함수를 적용한 결과를 list로 반환)
+- sapply ; lappply와 유사하나 결과를 리스트 대신 행렬, 벡터로 반환
+- vapply ; sapply와 유사하나 FUN의 모든 값이 FUN.VALUE와 호환되는지 확인
+- mapply ; sapply와 유사하나, 여러 개 인자를 함수에 전달할 수 있다.
+- tapply ; 그룹별 처리를 위한 apply (대상은 list)
+- by ; 데이터프레임 대상 tapply함수
+
+- summaryBy(Sepal.width+Sepal.Length~Speices, iris) - doBy 패키지
+- orderBy(~-Species+Sepal.Length, data=iris) - doBy 패키지
+- sampleBy(~Species, data=iris, frac=0.1) - doBy 패키지
+- split(iris, iris$Species)
+- sort(iris$Sepal.Length)
+- order(iris$Sepal.Width, decreasing=T)
+- with, within
+- attach, detach
+- aggregate : aggregate(iris[,1:4], by=list(iris$Species), FUN=mean)
+- which which.max which.min

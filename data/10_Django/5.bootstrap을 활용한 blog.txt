@@ -1,0 +1,200 @@
+1. git repository 생성 - 외부에서 볼 수 없게 private하게
+    Repository name : ch05_website
+    private 선택
+    Add a README file 선택
+
+2. 내 깃주소 copy
+
+3. c:/big/src/10_Django>git clone https://github.com/~/ch05_website.git 실행 후 파이참으로 open
+
+4. Settings -> Project : ch05_website > Python Interpreter > Add..으로 가상환경 만듦 (Apply-Ok)
+
+5. 가상환경이 잘 만들어졌는지 들어가보기
+    c:/big/src/10_Django/ch05_website>venv\Script\activate.bat 실행
+    (venv) c:/big/src/10_Django/ch05_website>deactivate 실행하면 가상환경을 다시 나옴
+
+5. .gitignore 파일 작성 후 다음 추가(git 버전관리가 필요없는 폴더 추가 ex.idea:파이참에서 필요한 프로젝트의 가상환경 외 정보들)
+    venv/
+    .idea/
+    *.pyc
+    db.sqlite3
+    migrations/
+
+6. (venv) c:/big/src/10_Django/ch05_website>git add .
+                                                           git commit -m "initial setup 0"
+                                                           git push
+
+7. 필요한 패키지 설치
+   (venv) c:/big/src/10_Django/ch05_website>pip  install django
+
+8. 현프로젝트를 장고 프로젝트로
+   (venv) c:/big/src/10_Django/ch05_website>django-admin startproject ch05 . ( .은 반드시)
+
+9. 새로운 DB 파일(db.sqlite3) 생성후 db.sqlite3도 .gitignore에 추가하고 git에 push
+   (venv) c:/big/src/10_Django/ch05_website>python manage.py makemigrations
+   (venv) c:/big/src/10_Django/ch05_website>python manage.py migrate
+
+10. 앱생성(.gitignore에 migrations/추가)후 앱 등록(settings.py)
+   (venv) c:/big/src/10_Django/ch05_website>python manage.py startapp blog
+
+
+11. superuser생성
+   (venv) c:/big/src/10_Django/ch05_website>python manage.py createsuperuser
+   (venv) c:/big/src/10_Django/ch05_website>python manage.py runserver
+
+12. blog의 models.py에 추가
+from django.db import models
+from django.contrib.auth.models import User
+class Post(models.Model):
+    title = models.CharField(max_length=30)
+    content = models.TextField()
+    created = models.DateTimeField(blank=True)
+    author = models.ForeignKey(User, models.CASCADE)
+    def __str__(self):
+        return "{} :: {}".format(self.title, self.author)
+
+   (venv) c:/big/src/10_Django/ch05_website>python manage.py makemigrations
+   (venv) c:/big/src/10_Django/ch05_website>python manage.py migrate
+
+13. admin.py으로 들어가 Post추가 후 settings을 수정 후 데이터 입력(한글 lorem ipsum/한글입숨 이용)
+from django.contrib import admin
+from .models import Post
+admin.site.register(Post)
+
+# TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Seoul'
+
+14. ch05/urls.py
+from django.contrib import admin
+from django.urls import path, include
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('blog/', include('blog.urls'))
+]
+
+15.  blog/urls.py
+from django.urls import path, include
+from . import views
+urlpatterns = [
+    path('', views.index, name="index")
+]
+
+16. views.py
+from django.shortcuts import render
+from .models import Post
+def index(request):
+    posts = Post.objects.all()
+    context = {
+        'posts':posts,
+    }
+    return render(request, 'blog/index.html', context)
+
+17. index.html
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>Blog</title>
+</head>
+<body>
+    <h1>Blog</h1>
+    {% for post in posts %}
+    <h3>{{post.title}}</h3>
+    <h5>{{post.created}} by {{post.author}}</h5>
+    <p>{{post.content}}</p>
+    {% endfor %}
+</body>
+</html>
+
+18. ListView사용하기
+★   blog/urls.py
+from django.urls import path, include
+from . import views
+urlpatterns = [
+    # path('', views.index, name="index")
+    path('', views.PostList.as_view())
+]
+★ views.py
+from django.shortcuts import render
+from .models import Post
+from django.views.generic import ListView
+
+class PostList(ListView):
+    model = Post
+# def index(request):
+#     posts = Post.objects.all()
+#     context = {
+#         'posts':posts,
+#     }
+#     return render(request, 'blog/post_list.html', context)
+★blog/post_list.html
+<body>
+    <h1>Blog</h1>
+    {% for post in object_list %}
+    <h3>{{post.title}}</h3>
+    <h5>{{post.created}} by {{post.author}}</h5>
+    <p>{{post.content}}</p>
+    {% endfor %}
+</body>
+
+19. bootstrap 이용 : https://bootswatch.com의 원하는 디자인 적용
+20. navigation bar 만들기
+21. Bootstrap Grid (startbootstrap.com > templates > blog > 처럼 하기)
+   getbootstrap.com에서 Doc > Layout > Grid 소스 가져오기
+
+22. 이미지 저장 추가하기 (pip install pillow)
+★ blog/models.py
+from django.db import models
+from django.contrib.auth.models import User
+class Post(models.Model):
+    title = models.CharField(max_length=30)
+    content = models.TextField()
+    # pip install pillow
+    head_image = models.ImageField(upload_to='blog/', blank=True)
+    created = models.DateTimeField(blank=True)
+    author = models.ForeignKey(User, models.CASCADE)
+    def __str__(self):
+        return "{} :: {}".format(self.title, self.author)
+★ ch05/settings.py
+STATIC_URL = '/static/'
+import os
+MEDIA_ROOT = os.path.join(BASE_DIR, '_media')
+MEDIA_URL = '/media/'
+
+★ ch05/urls.py
+from django.contrib import admin
+from django.urls import path, include
+from django.conf.urls.static import static
+from django.conf import settings
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('blog/', include('blog.urls'))
+]
+urlpatterns += static(settings.MEDIA_URL,
+                      document_root=settings.MEDIA_ROOT)
+
+★ post_list.html
+<div class="col-md-8">
+
+        <h1 class="my-4">Blog</h1>
+        {% for post in object_list %}
+        <!-- Blog Post -->
+        <div class="card mb-4">
+          {% if post.head_image %}
+          <img class="card-img-top" src="{{ post.head_image.url }}" width="750" height="300" alt="Card image cap">
+          {% else %}
+          <img class="card-img-top" src="http://placehold.it/750x300" alt="Card image cap">
+          {% endif %}
+          <div class="card-body">
+            <h2 class="card-title">{{post.title | truncatewords:4}}</h2>
+            <p class="card-text">{{post.content | truncatewords:20}}</p>
+            <a href="#" class="btn btn-primary">Read More &rarr;</a>
+          </div>
+          <div class="card-footer text-muted">
+            Posted on {{post.created}} by
+            <a href="#">{{post.author}}</a>
+          </div>
+        </div>
+        {% endfor %}
+
+      </div>

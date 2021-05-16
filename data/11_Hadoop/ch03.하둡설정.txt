@@ -1,0 +1,56 @@
+1. 하둡 설치 및 PATH 설정 후
+	source .bashrc # 환경변수 적용시킴. 실행권한이 없는 script 파일을 실행시키는 명령
+
+2. 하둡과 관련된 설정파일 ($HADOOP_HOME/etc/hadoop)
+    (1) hadoop-env.sh (jdk 경로, 클래스 패스, 데몬 실행 옵션 등 설정)
+	모든 노드 export JAVA_HOME=/home/nova/jdk1.8.0_181
+
+    (2) core-site.xml (hdfs와 맵리듀스에서 공통적으로 사용할 환경 정보 설정 ex. 하둡의 디폴트 파일 시스템 이름 지정)
+	모든 노드 fs.defaultFS ; hdfs://master:9000
+
+    (※) master에 작업한 것을 slave1, slave2, slave3에 동기화
+	rsync -a ~/jdk1.8.0_181/ slave1:~/jdk1.8.0_181/
+	rsync -a ~/hadoop-3.0.3/ slave1:~/hadoop-3.0.3/
+	rsync -a ~/.bashrc slave1:~/.bashrc
+
+    (3) hdfs-site.xml (하둡 분산 파일 시스템 설정을 오버라이드하는 파일)
+	네임노드① dfs.replication ; 2 (복제수)
+	네임노드② dfs.namenode.name.dir ; file:///dfs/name (파일시스템 이미지 저장될 경로)
+	네임노드③ dfs.namenode.edits.dir ; file:///dfs/edits (에디터로그가 저장될 경로)
+	네임노드④ dfs.namenode.secondary.http-address ; backup:9868 (보조네임노드와 포트번호)
+	데이터노드 dfs.datanode.data.dir ; file:///dfs/data (데이터 파일이 저장될 경로)
+	보조네임노드 dfs.namenode.checkpoint.dir ; file:///dfs/namesecondary (파일시스템이미지, 에디트로그 사본이 저장될 경로)
+
+    (4) mapred-site.xml(맴 리듀스 프레임워크 이름 지정)
+	네임노드 mapreduce.framework.name ; yarn
+
+    (5) yarn-site.xml (맵리듀스 프레임워크에서 사용할 셔틀 서비스 지정)
+	리소스메니저 yarn.nodemanager.aux-services ; mapreduce_shuffle (맵리듀스가 사용할 보조서비스)
+	노드매니저 yarn.resourcemanager.hostname ; master
+
+    (6) workers (데이터 노드들의 host이름들 지정)
+	slave1 slave2 slave3
+
+    (*) master node 설정이 끝남. data node 설정 파일을 master에서 비밀번호 없이 접근하려 ssh 키 생성
+	ssh-keygen
+	cd .ssh
+	cp id-rsa.pub authorized_keys
+	scp authorized_keys slave1:~/.ssh/authorized_keys (로컬에 있는 파일을 특정 host로 복수)
+    (7) 데이터노드와 보조네임노드의 hdfs.site.xml
+	데이터노드 dfs.datanode.data.dir ; file:///dfs/data (데이터 파일이 저장될 경로)
+	보조네임노드 dfs.namenode.checkpoint.dir ; file:///dfs/namesecondary (파일시스템이미지, 에디트로그 사본이 저장될 경로)
+    (8) 데이터노드의 yarn-site.xml
+	노드매니저 yarn.resourcemanager.hostname ; master
+
+    ★ master node == name node == resource manager == Job tracker
+      data   node == data node == node manager == Task tracker
+      secondary master node == 보조네임노드
+
+3. 네임노드 포맷 : 네임노드의 포맷이 1번만 한다(성공되었을 경우). 포맷을 성공했는데도 불구하고 한번 더 하면, 브로플 id가 다시 생성되서 기존 data를 못 읽게 됨.
+                                                 최악의 경우 데이터 노드 자체가 실행 안되기도 함.
+	hdfs namenode -format
+	에러가 났을 경우 INFO 대신 ERROR 파일명이 뜸. 대부분 xml 오타임. 수정하고 이럴 경우 다시 포맷
+
+4. 하둡 클러스터 실행
+	start-all.sh (反) stop-all.sh
+	* 브라우저 통해 확인 master:9870으로 마스터 네임노드 접속 (데이터는 한블록이 134217728씩 되어있는 것을 볼 수 있다)
